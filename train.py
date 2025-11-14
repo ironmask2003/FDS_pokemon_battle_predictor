@@ -3,6 +3,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 import argparse
+import json
 
 from load_dataset import *
 from extract_features import *
@@ -32,6 +33,11 @@ def main():
     train_path, test_path = gen_path(args.kaggle)
 
     train_data = load_data(train_path, args.idx, args.n_turns, args.show)
+    # Drop specific problematic line from train_data if present
+    drop_idx = 4877
+    if len(train_data) > drop_idx:
+        del train_data[drop_idx]
+        print(f"Dropped line {drop_idx} from train_data")
     test_data = load_data(test_path, args.idx, args.n_turns, args.show_train)
 
     print("Processing training data...")
