@@ -1,6 +1,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
+import pandas as pd
 import argparse
 
 from load_dataset import *
@@ -30,7 +31,7 @@ def main():
     args = parse_args()
     train_path, test_path = gen_path(args.kaggle)
 
-    train_data = load_data(train_path, args.idx, args.n_turns, args.show)
+    train_data = load_data(train_path, args.idx, args.n_turns, args.show).pop(4877)
     test_data = load_data(test_path, args.idx, args.n_turns, args.show_train)
 
     print("Processing training data...")
@@ -70,9 +71,6 @@ def main():
 
     accuracy = accuracy_score(y_val, val_preds)
     print(f"Validation Accuracy: {accuracy:.4f}")
-
-    # Creiamo un DataFrame per visualizzare gli errori
-    import pandas as pd
 
     val_results = pd.DataFrame({
         'y_true': y_val,

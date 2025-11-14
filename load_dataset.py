@@ -22,12 +22,7 @@ def load_data(path, idx_view = 0, n_turns = 2, show=False):
     print(f"Loading data from '{path}'...")
     try:
         with open(path, 'r') as f:
-            cont = 0
             for line in f:
-                if cont == 4877:
-                    cont += 1
-                    continue
-                cont += 1
                 # json.loads() parses one line (one JSON object) into a Python dictionary
                 data.append(json.loads(line))
 
