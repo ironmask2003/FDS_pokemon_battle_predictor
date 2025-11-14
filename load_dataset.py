@@ -6,7 +6,7 @@ def gen_path(kaggle):
     if kaggle:
         # --- Define the path to our data ---
         COMPETITION_NAME = 'fds-pokemon-battles-prediction-2025'
-        DATA_PATH = os.path.join('../input', COMPETITION_NAME)
+        DATA_PATH = os.path.join('/kaggle/input', COMPETITION_NAME)
 
         train_file_path = os.path.join(DATA_PATH, 'train.jsonl')
         test_file_path = os.path.join(DATA_PATH, 'test.jsonl')
